@@ -1221,8 +1221,26 @@ textarea.form-input::-webkit-resizer { display: none; }
 
 .form-btn:disabled:hover::before { background: var(--bg-gradient-jet); }
 
+ul.custom-bullets {
+  list-style: none;
+  padding-left: 20px;
+}
 
+ul.custom-bullets li {
+  position: relative;
+  padding-left: 25px;
+  color: var(--light-gray);
+  font-weight: var(--fw-300);
+}
 
+ul.custom-bullets li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 15px;
+  color: var(--vegas-gold);
+}
 
 
 /*-----------------------------------*\
