@@ -53,6 +53,7 @@
     hsl(45, 100%, 72%), 
     hsl(35, 100%, 68%)
   );
+  --bs-border-radius-lg: 0.5rem;
 
   /* solid */
 
@@ -1136,7 +1137,81 @@ main {
 }
 
 
+/* Skills container */
+.skills-container {
+  /* background: #fff; */
+}
 
+
+/* Category title */
+.category {
+  text-align: left;
+  margin-bottom: 15px;
+}
+
+.category h3 {
+  display: flex;
+  align-items: center;
+  color: var(--white-2);
+  text-transform: capitalize;
+}
+
+.category h3::before {
+  font-size: 22px;
+  margin-right: 10px;
+}
+
+.h3-icon-bg {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 3rem;
+  width: 3rem;
+  font-size: 1.5rem;
+  margin-right: 1rem !important;
+  border-radius: var(--bs-border-radius-lg) !important;
+  background: var(--text-gradient-yellow);
+}
+
+.skill-h3-container {
+  display: flex !important;
+  align-items: center !important;
+  margin-bottom: 1rem !important;
+}
+
+/* Skill grid */
+.skill-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+/* Skill items */
+.skill-item {
+
+  /* padding: 10px; */
+  /* border-radius: 8px; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* font-size: 16px;
+  font-weight: bold; */
+  /* color: #333; */
+
+  color: var(--white-1);
+  background: var(--onyx);
+  font-size: var(--fs-8);
+  font-weight: var(--fw-300);
+  /* width: max-content; */
+  padding: 3px 12px;
+  border-radius: 8px;
+}
+
+/* Icons */
+.fs-3 {
+  font-size: calc(1.6rem + 0.1vw) !important;
+  padding: 0.5rem;
+}
 
 
 /*-----------------------------------*\
@@ -1266,6 +1341,10 @@ textarea.form-input::-webkit-resizer { display: none; }
 
   .project-img,
   .skills-banner-box { height: auto; }
+
+  .skill-grid {
+    grid-template-columns: repeat(1, 1fr); /* 1 item per row on mobile */
+}
 
 }
 
@@ -1655,6 +1734,10 @@ textarea.form-input::-webkit-resizer { display: none; }
     width: max-content;
     margin-left: auto;
   }
+
+  .skill-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 items per row on smaller screens */
+}
   
 }
 
@@ -1895,5 +1978,9 @@ textarea.form-input::-webkit-resizer { display: none; }
 	 */
 
   .timeline-text { max-width: 700px; }
+
+  .skill-grid {
+    grid-template-columns: repeat(3, 1fr); /* Ensures exactly 3 columns */
+}
 
 }
