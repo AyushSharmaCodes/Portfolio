@@ -829,19 +829,19 @@ main {
   line-height: 1.6;
 }
 
-ul.custom-bullets {
+.custom-bullets {
   list-style: none;
   padding-left: 20px;
 }
 
-ul.custom-bullets li {
+.custom-bullets li {
   position: relative;
   padding-left: 25px;
   color: var(--light-gray);
   font-weight: var(--fw-300);
 }
 
-ul.custom-bullets li::before {
+.custom-bullets li::before {
   content: '•';
   position: absolute;
   left: 0;
