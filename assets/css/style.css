@@ -1854,7 +1854,7 @@ textarea.form-input::-webkit-resizer { display: none; }
   .skills-banner-box { height: 230px; }
 
   .skill-grid {
-    grid-template-columns: repeat(3, 1fr); /* 2 items per row on smaller screens */
+    grid-template-columns: repeat(2, 1fr); /* 2 items per row on smaller screens */
 }
 
 }
@@ -1981,6 +1981,8 @@ textarea.form-input::-webkit-resizer { display: none; }
 	 */
 
   .timeline-text { max-width: 700px; }
-
+  .skill-grid {
+    grid-template-columns: repeat(3, 1fr); /* 2 items per row on smaller screens */
+}
 
 }
