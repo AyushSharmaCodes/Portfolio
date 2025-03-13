@@ -1179,10 +1179,9 @@ main {
   margin-bottom: 1rem !important;
 }
 
-/* Skill grid */
 .skill-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(1, 1fr);
   gap: 10px;
 }
 
@@ -1854,6 +1853,10 @@ textarea.form-input::-webkit-resizer { display: none; }
 
   .skills-banner-box { height: 230px; }
 
+  .skill-grid {
+    grid-template-columns: repeat(3, 1fr); /* 2 items per row on smaller screens */
+}
+
 }
 
 
@@ -1979,8 +1982,5 @@ textarea.form-input::-webkit-resizer { display: none; }
 
   .timeline-text { max-width: 700px; }
 
-  .skill-grid {
-    grid-template-columns: repeat(3, 1fr); /* Ensures exactly 3 columns */
-}
 
 }
