@@ -841,27 +841,27 @@ main {
 
 .skills-item:not(:last-child) { margin-bottom: 15px; }
 
-.skill .title-wrapper {
+.skills .title-wrapper {
   display: flex;
   align-items: center;
   gap: 5px;
   margin-bottom: 8px;
 }
 
-.skill .title-wrapper data {
+.skills .title-wrapper data {
   color: var(--light-gray);
   font-size: var(--fs-7);
   font-weight: var(--fw-300);
 }
 
-.skill-progress-bg {
+.skills-progress-bg {
   background: var(--jet);
   width: 100%;
   height: 8px;
   border-radius: 10px;
 }
 
-.skill-progress-fill {
+.skills-progress-fill {
   background: var(--text-gradient-yellow);
   height: 100%;
   border-radius: inherit;
