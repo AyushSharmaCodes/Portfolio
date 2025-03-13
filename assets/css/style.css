@@ -863,14 +863,14 @@ main {
 
 .skills-item:not(:last-child) { margin-bottom: 15px; }
 
-.skills .title-wrapper {
+.skills .title-wrapper .resources {
   display: flex;
   align-items: center;
   gap: 5px;
   margin-bottom: 8px;
 }
 
-.skills .title-wrapper data {
+.skills .resources .title-wrapper data {
   color: var(--light-gray);
   font-size: var(--fs-7);
   font-weight: var(--fw-300);
