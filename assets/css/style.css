@@ -2543,3 +2543,18 @@ textarea.form-input::-webkit-resizer {
     min-width: unset;
   }
 }
+
+#dev-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #ffcc00; /* Yellow background */
+  color: #000; /* Black text */
+  text-align: center;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  z-index: 1000; /* Ensure it stays on top of other elements */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Optional: Add a shadow */
+}
