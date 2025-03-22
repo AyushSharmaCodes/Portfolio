@@ -52,8 +52,6 @@ for (let i = 0; i < testimonialsItem.length; i++) {
 modalCloseBtn.addEventListener("click", testimonialsModalFunc);
 overlay.addEventListener("click", testimonialsModalFunc);
 
-
-
 // custom select variables
 const select = document.querySelector("[data-select]");
 const selectItems = document.querySelectorAll("[data-select-item]");
@@ -133,8 +131,6 @@ for (let i = 0; i < formInputs.length; i++) {
   });
 }
 
-
-
 // page navigation variables
 const navigationLinks = document.querySelectorAll("[data-nav-link]");
 const pages = document.querySelectorAll("[data-page]");
@@ -153,9 +149,28 @@ for (let i = 0; i < navigationLinks.length; i++) {
         navigationLinks[i].classList.remove("active");
       }
     }
-
   });
 }
+
+// navigationLinks.forEach((link) => {
+//   link.addEventListener("click", function () {
+//     const targetPage = this.innerHTML.toLowerCase();
+
+//     pages.forEach((page) => {
+//       if (page.dataset.page === targetPage) {
+//         page.classList.add("active");
+//       } else {
+//         page.classList.remove("active");
+//       }
+//     });
+
+//     navigationLinks.forEach((navLink) => {
+//       navLink.classList.toggle("active", navLink === this);
+//     });
+
+//     window.scrollTo(0, 0);
+//   });
+// });
 
 // mywork variables
 const myworkItem = document.querySelectorAll("[data-mywork-item]");

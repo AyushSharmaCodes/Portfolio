@@ -276,7 +276,11 @@ article.active {
   width: 20px;
 }
 
-.content-card {
+.content-card{
+}
+
+.content-card,
+.resources-card {
   position: relative;
   background: var(--border-gradient-onyx);
   padding: 15px;
@@ -295,14 +299,15 @@ article.active {
   z-index: 1;
   margin: 0.5rem;
   cursor: auto;
-  display: grid; 
+  display: grid;
   /* grid-template-columns: repeat(1, 1fr);  */
   gap: 10px;
   box-shadow: 0px 0px 20px rgba(255, 165, 0, 0.3);
 }
 
 .content-card::before,
-.mywork-content-card::before {
+.mywork-content-card::before,
+.resources-card::before {
   content: "";
   position: absolute;
   inset: 1px;
@@ -633,7 +638,8 @@ main {
   margin-bottom: 20px;
 }
 
-.testimonials-list, .mywork-list {
+.testimonials-list,
+.mywork-list {
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
@@ -653,6 +659,7 @@ main {
 }
 
 .testimonials-avatar-box {
+  display: flexbox;
   position: absolute;
   top: 0;
   left: 0;
@@ -874,7 +881,7 @@ main {
   color: hsl(35, 100%, 68%)
 }
 
-.mywork-item-title{
+.mywork-item-title {
   font-weight: 2rem;
 }
 
@@ -959,7 +966,7 @@ main {
   color: azure;
 }
 
-.code-snippet-link-icon{
+.code-snippet-link-icon {
   align-content: flex-end !important;
   color: rgba(255, 183, 77);
 }
@@ -1147,14 +1154,14 @@ main {
   margin-bottom: 15px;
 }
 
-.skills .title-wrapper .resources {
+.skills .title-wrapper {
   display: flex;
   align-items: center;
   gap: 5px;
   margin-bottom: 8px;
 }
 
-.skills .resources .title-wrapper data {
+.skills .title-wrapper data {
   color: var(--light-gray);
   font-size: var(--fs-7);
   font-weight: var(--fw-300);
@@ -1173,8 +1180,29 @@ main {
   border-radius: inherit;
 }
 
+.resources {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 8px;
+  position: relative;
 
+  color: var(--light-gray);
+  font-size: var(--fs-7);
+  font-weight: var(--fw-300);
+}
 
+.resources-card {
+  margin-bottom: 1rem;
+}
+
+[data-page] {
+  display: none;
+}
+
+[data-page].active {
+  display: block;
+}
 
 
 /*-----------------------------------*\
@@ -1484,7 +1512,8 @@ main {
   background: var(--text-gradient-yellow);
 }
 
-.skill-h3-container, .code-snippet-heading-icon {
+.skill-h3-container,
+.code-snippet-heading-icon {
   display: flex !important;
   align-items: center !important;
   margin-bottom: 1rem !important;
@@ -1526,6 +1555,10 @@ main {
 .fs-4 {
   font-size: var(--fs-4) !important;
   padding: 0.5rem;
+}
+
+.resources-icon{
+  height: 3rem;
 }
 
 
@@ -1664,22 +1697,25 @@ textarea.form-input::-webkit-resizer {
  * responsive larger than 450px screen
  */
 
- @media (max-width: 450px) {
+@media (max-width: 450px) {
+
   /**
    * #PORTFOLIO, SKILLS 
    */
   .content-card,
+  .resources-card,
   .mywork-model-container {
     min-width: 260px;
   }
 
-  .mywork-list{
+  .mywork-list {
     width: 100%;
     scroll-snap-align: center;
   }
 }
 
 @media (min-width: 450px) {
+
   /**
    * #PORTFOLIO, SKILLS 
    */
@@ -1698,6 +1734,8 @@ textarea.form-input::-webkit-resizer {
   }
 
   
+
+
 }
 
 
@@ -1893,12 +1931,17 @@ textarea.form-input::-webkit-resizer {
     margin-bottom: 25px;
   }
 
-  .content-card  {
+  .content-card {
     padding: 30px;
     padding-top: 25px;
   }
 
-  .testimonials-list, .mywork-list {
+  .resources-card {
+    padding: 30px;
+  }
+
+  .testimonials-list,
+  .mywork-list {
     gap: 30px;
     margin: 0 -30px;
     padding: 30px;
@@ -1966,7 +2009,7 @@ textarea.form-input::-webkit-resizer {
     width: 35px;
   }
 
-  
+
 
 
   /**
@@ -2043,10 +2086,28 @@ textarea.form-input::-webkit-resizer {
     font-size: 18px;
   }
 
+  .container {
+    flex-wrap: wrap;
+    /* Allows items to stack when screen is small */
+    overflow-x: hidden;
+    /* Disables horizontal scroll on small screens */
+  }
+
+  .card {
+    width: 100%;
+    /* Full width on smaller screens */
+    min-width: unset;
+  }
+
+
+
 }
 
-
-
+@media (max-width: 600px) {
+  .testimonials-item-title{
+    padding-top: 30px;
+  }
+}
 
 
 /**
@@ -2177,7 +2238,7 @@ textarea.form-input::-webkit-resizer {
     /* 2 items per row on smaller screens */
   }
 
-  
+
 
 }
 
@@ -2274,7 +2335,8 @@ textarea.form-input::-webkit-resizer {
     grid-template-columns: 1fr 1fr;
     gap: 20px 25px;
   }
-  .mywork-list{
+
+  .mywork-list {
     /* grid-template-columns: 1fr 1fr;
     gap: 20px 25px; */
   }
@@ -2287,7 +2349,7 @@ textarea.form-input::-webkit-resizer {
 
   /* mywork */
 
-  
+
 
 
 
@@ -2529,32 +2591,23 @@ textarea.form-input::-webkit-resizer {
 }
 
 
-@media (min-width: 580) {
-  .container {
-    flex-wrap: wrap;
-    /* Allows items to stack when screen is small */
-    overflow-x: hidden;
-    /* Disables horizontal scroll on small screens */
-  }
 
-  .card {
-    width: 100%;
-    /* Full width on smaller screens */
-    min-width: unset;
-  }
-}
 
 #dev-banner {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  background-color: #ffcc00; /* Yellow background */
-  color: #000; /* Black text */
+  background-color: #ffcc00;
+  /* Yellow background */
+  color: #000;
+  /* Black text */
   text-align: center;
-  padding: 10px;
+  padding: 2px;
   font-size: 16px;
   font-weight: bold;
-  z-index: 1000; /* Ensure it stays on top of other elements */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Optional: Add a shadow */
+  z-index: 1000;
+  /* Ensure it stays on top of other elements */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  /* Optional: Add a shadow */
 }
