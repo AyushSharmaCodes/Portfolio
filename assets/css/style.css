@@ -2611,3 +2611,65 @@ textarea.form-input::-webkit-resizer {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   /* Optional: Add a shadow */
 }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #1e1e1e;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #333;
+}
+th {
+  background-color: rgba(255, 183, 77);
+  color: black;
+  font-weight: bold;
+}
+tr:hover {
+  background-color: #292929;
+}
+a {
+  color: #ffa500;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+td:nth-child(3) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  /* -webkit-line-clamp: 2; */
+  -webkit-box-orient: vertical;
+  white-space: normal;
+  cursor: pointer;
+}
+
+td:nth-child(3):hover {
+  overflow: auto;
+
+}
+
+
+
+@media screen and (max-width: 768px) {
+  body {
+      height: auto;
+  }
+
+  table {
+      width: 100%;
+      display: block;
+      overflow-x: auto;
+  }
+
+  td:nth-child(3) {
+    font-size: .5rem;
+  }
+}

@@ -110,7 +110,67 @@ for (let i = 0; i < filterBtn.length; i++) {
 
 }
 
+//resources
+// custom select variables
+const resourcesselect = document.querySelector("[resources-data-select]");
+const resourcesselectItems = document.querySelectorAll("[resources-data-select-item]");
+const resourcesselectValue = document.querySelector("[resources-data-select-value]");
+const resourcesfilterBtn = document.querySelectorAll("[resources-data-filter-btn]");
 
+resourcesselect.addEventListener("click", function () { elementToggleFunc(this); });
+
+// add event in all select items
+for (let i = 0; i < resourcesselectItems.length; i++) {
+  resourcesselectItems[i].addEventListener("click", function () {
+
+    let resourcesselectedValue = this.innerText.toLowerCase();
+    resourcesselectValue.innerText = this.innerText;
+    elementToggleFunc(resourcesselect);
+    resourcesfilterFunc(resourcesselectedValue);
+
+  });
+}
+
+// filter variables
+const resourcesfilterItems = document.querySelectorAll("[resources-data-filter-item]");
+
+const resourcesfilterFunc = function (resourcesselectedValue) {
+
+  for (let i = 0; i < resourcesfilterItems.length; i++) {
+
+    if (resourcesselectedValue === "all") {
+      resourcesfilterItems[i].classList.add("active");
+      resourcesfilterItems[i].style.display = "block";
+    } else if (resourcesselectedValue === resourcesfilterItems[i].dataset.category) {
+      resourcesfilterItems[i].classList.add("active");
+      resourcesfilterItems[i].style.display = "block";
+    } else {
+      resourcesfilterItems[i].classList.remove("active");
+      resourcesfilterItems[i].style.display = "none";
+    }
+
+  }
+
+}
+
+// add event in all filter button items for large screen
+let resourceslastClickedBtn = resourcesfilterBtn[0];
+
+for (let i = 0; i < resourcesfilterBtn.length; i++) {
+
+  resourcesfilterBtn[i].addEventListener("click", function () {
+
+    let resourcesselectedValue = this.innerText.toLowerCase();
+    resourcesselectValue.innerText = this.innerText;
+    resourcesfilterFunc(resourcesselectedValue);
+
+    resourceslastClickedBtn.classList.remove("active");
+    this.classList.add("active");
+    resourceslastClickedBtn = this;
+
+  });
+
+}
 
 // contact form variables
 const form = document.querySelector("[data-form]");
@@ -245,3 +305,110 @@ function downloadFile(filename, buttonSelector, btntext, buttonLoader) {
     loader.style.display = "none"; // Hide loader
   }, 3000);
 }
+
+
+// async function loadExcel() {
+//   const filePath = "ai_tools.xlsx"; // Change to match your Excel file location
+
+//   try {
+//       const response = await fetch(filePath);
+//       if (!response.ok) throw new Error("Data cannot be loaded properly");
+
+//       const arrayBuffer = await response.arrayBuffer();
+//       const workbook = XLSX.read(arrayBuffer, { type: "array" });
+//       const sheetName = workbook.SheetNames[0];
+//       const sheet = workbook.Sheets[sheetName];
+
+//       const jsonData = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+//       populateTable(jsonData);
+//   } catch (error) {
+//       console.error("Error loading Excel file:", error);
+//   }
+// }
+
+// function populateTable(data) {
+//   const tbody = document.querySelector("#dataTable tbody");
+//   tbody.innerHTML = ""; // Clear previous data
+
+//   data.slice(1).forEach(row => {  // Skipping header row
+//       if (row.length < 3) return; // Ensure all columns exist
+
+//       const tr = document.createElement("tr");
+
+//       const tdName = document.createElement("td");
+//       tdName.textContent = row[0];
+
+//       const tdLink = document.createElement("td");
+//       const link = document.createElement("a");
+//       link.href = row[1];
+//       link.textContent = "Visit";
+//       link.target = "_blank";
+//       tdLink.appendChild(link);
+
+//       const tdDesc = document.createElement("td");
+//       tdDesc.textContent = row[2];
+
+//       tr.appendChild(tdName);
+//       tr.appendChild(tdLink);
+//       tr.appendChild(tdDesc);
+
+//       tbody.appendChild(tr);
+//   });
+// }
+
+// // Auto-load data on page refresh
+// window.onload = loadExcel;
+
+async function fetchExcelData() {
+  try {
+      // Check if cached data exists
+      let cachedData = localStorage.getItem("tableData");
+      if (cachedData) {
+          populateTable(JSON.parse(cachedData));
+          return;
+      }
+
+      // Fetch file from repository or local path (adjust the path)
+      const response = await fetch("ai_tools.xlsx"); // Update path as needed
+      const arrayBuffer = await response.arrayBuffer();
+
+      const workbook = XLSX.read(arrayBuffer, { type: "array" });
+      const sheetName = workbook.SheetNames[0];
+      const sheet = workbook.Sheets[sheetName];
+
+      // Convert Excel to JSON
+      const jsonData = XLSX.utils.sheet_to_json(sheet);
+      
+      // Cache data for faster reloads
+      localStorage.setItem("tableData", JSON.stringify(jsonData));
+
+      // Populate table
+      populateTable(jsonData);
+  } catch (error) {
+      console.error("Error loading Excel file:", error);
+  }
+}
+
+function populateTable(data) {
+  const tableBody = document.querySelector("#dataTable tbody");
+  tableBody.innerHTML = ""; // Clear existing data
+
+  data.forEach(row => {
+      const tr = document.createElement("tr");
+
+      tr.innerHTML = `
+          <td>${row.Name || "N/A"}</td>
+          <td><a href="${row.Link || "#"}" target="_blank">🔗 Link</a></td>
+          <td class="truncate-text">${row.Description || "No description"}</td>
+      `;
+
+      tableBody.appendChild(tr);
+  });
+
+  applyCellStyles(); // Apply text truncation styles
+}
+
+// Load data after the page fully renders
+window.addEventListener("load", () => {
+  setTimeout(fetchExcelData, 500); // Load in background
+});
